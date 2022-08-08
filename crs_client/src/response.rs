@@ -18,11 +18,12 @@ pub enum ErrorOrValue<T> {
     Value { value: T },
 }
 
-impl<T> ErrorOrValue<T> {
+impl<T> Response<T> {
     pub fn unwrap(&self) -> &T {
-        match self {
+        let error_or_value = &self.error_or_value;
+        match error_or_value {
             ErrorOrValue::Error { error } => panic!("{}", error.message),
-            ErrorOrValue::Value { value } => value
+            ErrorOrValue::Value { value } => &value
         }
     }
 }

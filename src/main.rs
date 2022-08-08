@@ -6,7 +6,7 @@ async fn main() {
     let client = HttpClient::new(&url);
     let login_response = client.login("admin", "123").await;
 
-    let token = &login_response.error_or_value.unwrap().token;
+    let token = &login_response.unwrap().token;
 
     println!("{}", token);
 }
